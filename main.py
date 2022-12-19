@@ -64,8 +64,8 @@ class SnowStrider:
     self.level_list = levels.level_list
     self.level_rects = []
 
-    # Get the exit door's rect
-    self.door_rect = levels.get_door_pos(
+    # Get the rects of the sleigh blocks
+    self.sleigh_rects = levels.get_sleigh_rects(
       self.level_list[0], self.WIDTH, self.HEIGHT)
 
     # Instiantiate a Player instance
@@ -168,8 +168,8 @@ class SnowStrider:
     # Get the rects representing the new level
     self.level_rects = levels.smush_level(level, self.WIDTH, self.HEIGHT)
     
-    # Get the position of the door
-    self.door_rect = levels.get_door_pos(level, self.WIDTH, self.HEIGHT)
+    # Get the rects of the sleigh blocks
+    self.sleigh_rects = levels.get_sleigh_rects(level, self.WIDTH, self.HEIGHT)
     
     # Draw the level onto the background surface with the background image behind
     if self.lvl_idx == 0:
@@ -217,15 +217,17 @@ class SnowStrider:
     exit the game.
     """
     if self.present_manager.score == self.present_manager.total_presents:
-      if self.player.rect.colliderect(self.door_rect):
-        self.lvl_idx += 1
-        # No more levels so exit
-        if self.lvl_idx == len(self.level_list):
-          self._play_video('videos/ending_scene.mov')
-          sys.exit()
-        # Load the next level
-        else:
-          self._load_level(self.level_list[self.lvl_idx])
+      for sleigh_rect in self.sleigh_rects:
+        if self.player.rect.colliderect(sleigh_rect):
+          self.lvl_idx += 1
+          # No more levels so play ending scene and quit game
+          if self.lvl_idx == len(self.level_list):
+            self._play_video('videos/ending_scene.mov')
+            sys.exit()
+          # Load the next level
+          else:
+            self._load_level(self.level_list[self.lvl_idx])
+          break
 
   def _play_video(self, video_name):
     """Takes as input the filename of a video file and plays the video"""
@@ -236,7 +238,7 @@ class SnowStrider:
     # check if the user has pressed enter to start the game
     if event.key == pygame.K_RETURN and self.game_running == False:
       self.game_running = True
-      self._play_video('videos/cutscene.mov')
+      # self._play_video('videos/cutscene.mov')
       return
     # If the player presses the - key, then quit the game
     if event.key == pygame.K_MINUS:

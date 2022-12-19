@@ -313,18 +313,18 @@ def smush_level(level, screen_width, screen_height):
   return smushed
 
 
-def get_door_pos(level, screen_width, screen_height):
-  """Gets the rect of the door"""
+def get_sleigh_rects(level, screen_width, screen_height):
+  """Gets the rects of the sleigh"""
   # Calculate how large each block in the level would be on the screen
   block_width, block_height = get_block_size(level, screen_width, screen_height)
   
-  # get door position
-  door_pos = None
+  # Get the rects of the sleigh
+  sleigh_rects = []
   for i, row in enumerate(level):
     for j, block in enumerate(row):
       if block == SLEIGH1 or block == SLEIGH2:
-        door_pos = pygame.Rect(j*block_width, i*block_height,
+        sleigh_rect = pygame.Rect(j*block_width, i*block_height,
                                       block_width+1, block_height+1)
-        return door_pos
-  raise Exception('Door is missing from level')
-
+        sleigh_rects.append(sleigh_rect)
+        
+  return sleigh_rects
