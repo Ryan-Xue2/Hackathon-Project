@@ -229,6 +229,7 @@ class SnowStrider:
           self._load_level(self.level_list[self.lvl_idx])
 
   def _play_video(self, video_name):
+    """Takes as input the filename of a video file and plays the video"""
     video = VideoFileClip(video_name)
     video.resize((self.WIDTH, self.HEIGHT)).preview()
     
@@ -236,7 +237,7 @@ class SnowStrider:
     # check if the user has pressed enter to start the game
     if event.key == pygame.K_RETURN and self.game_running == False:
       self.game_running = True
-      self._play_video('test.mp4')
+      self._play_video('Snow_Strider.mov')
       return
     # If the player presses the - key, then quit the game
     if event.key == pygame.K_MINUS:
