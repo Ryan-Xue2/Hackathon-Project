@@ -25,7 +25,7 @@ class Settings:
     self.jump_multiplier = 1
 
     # Evil santa's settings
-    self.bad_santa_speed = 1
+    self.bad_santa_speed = 1.5
     self.bad_santa_gravity = 1
     self.bad_santa_jump_force = 10
     
