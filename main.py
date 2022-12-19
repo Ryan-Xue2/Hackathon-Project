@@ -221,8 +221,7 @@ class SnowStrider:
         self.lvl_idx += 1
         # No more levels so exit
         if self.lvl_idx == len(self.level_list):
-          print('Completed game')
-          time.sleep(3)
+          self._play_video('videos/ending_scene.mov')
           sys.exit()
         # Load the next level
         else:
@@ -237,7 +236,7 @@ class SnowStrider:
     # check if the user has pressed enter to start the game
     if event.key == pygame.K_RETURN and self.game_running == False:
       self.game_running = True
-      self._play_video('Snow_Strider.mov')
+      self._play_video('videos/cutscene.mov')
       return
     # If the player presses the - key, then quit the game
     if event.key == pygame.K_MINUS:
