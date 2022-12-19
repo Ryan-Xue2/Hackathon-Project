@@ -195,7 +195,7 @@ class SnowStrider:
     # load in jump boost powerups
     self.powerups.load_powerups(level)
 
-    # reset powerup multipliers
+    # Reset powerup multipliers
     self.powerups.reset_powerups()
 
   def _check_player_death(self):
@@ -238,7 +238,7 @@ class SnowStrider:
     # check if the user has pressed enter to start the game
     if event.key == pygame.K_RETURN and self.game_running == False:
       self.game_running = True
-      # self._play_video('videos/cutscene.mov')
+      self._play_video('videos/cutscene.mov')
       return
     # If the player presses the - key, then quit the game
     if event.key == pygame.K_MINUS:
@@ -295,11 +295,10 @@ class SnowStrider:
       # Draw the powerups to the screen
       self.powerups.blit()
         
-      # Display the score
+      # Display the score, deaths, and the current lvl
       self.present_manager.show_score()
-  
-      # Display the number of deaths
       self.stats.show_deaths()
+      self.stats.show_cur_level(self.lvl_idx)
     
     # Show the user the updated display
     pygame.display.update()

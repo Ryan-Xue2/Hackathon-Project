@@ -137,8 +137,9 @@ level7 = [#incomplete
   [2, 2, 2, 2, 2, 4, 0, 0, 0, 3, 2, 2, 2, 2, 2, 2, 2, 2],
 ]
 
+level8 = level7
 
-level9 = [  # Complete
+level9 = [ 
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 0, 0],
   [0, 0, 0, 6, 6, 0, 0, 0, 9, 10, 0, 0, 0, 6, 6, 6, 0, 0],
@@ -151,7 +152,7 @@ level9 = [  # Complete
   [0, 0, 5, 2, 2, 2, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
 
-level10 = [  # Complete
+level10 = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 0, 0, 0],
   [0, 0, 3, 2, 4, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0],
@@ -165,12 +166,8 @@ level10 = [  # Complete
   [0, 0, 0, 0, 0, 0, 0, 3, 2, 4, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
 
-# real level list
-level_list = [tutorial, tutorial, level9, level10,
-]
-
-# level list to test levels
-# level_list = [tutorial, level2, level3, level4]
+# List of all the levels
+level_list = [tutorial, level1, level2, level3, level4, level5, level6, level7, level8, level9, level10]
 
 
 def draw_level(level, surface):
@@ -326,5 +323,6 @@ def get_sleigh_rects(level, screen_width, screen_height):
         sleigh_rect = pygame.Rect(j*block_width, i*block_height,
                                       block_width+1, block_height+1)
         sleigh_rects.append(sleigh_rect)
-        
+    
+  assert len(sleigh_rects) == 2
   return sleigh_rects
