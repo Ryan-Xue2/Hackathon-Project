@@ -21,6 +21,11 @@ class Present:
     self.font = pygame.font.SysFont(None, 48)  # The font for the score
 
     # Load the images of the presents
+    # Keep original copies of the presents so that pixels aren't lost when scaling
+    self.present_img_og = load_transparent_image('images/present1.png')
+    self.present_img2_og = load_transparent_image('images/present2.png')
+    self.present_img3_og = load_transparent_image('images/present3.png')
+
     self.present_img = load_transparent_image('images/present1.png')
     self.present_img2 = load_transparent_image('images/present2.png')
     self.present_img3 = load_transparent_image('images/present3.png')
@@ -41,13 +46,13 @@ class Present:
 
     # Scale the images to the new block size
     self.present_img = pygame.transform.scale(
-      self.present_img, (block_width, block_height)
+      self.present_img_og, (block_width, block_height)
     )
     self.present_img2 = pygame.transform.scale(
-      self.present_img2, (block_width, block_height)
+      self.present_img2_og, (block_width, block_height)
     )
     self.present_img3 = pygame.transform.scale(
-      self.present_img3, (block_width, block_height)
+      self.present_img3_og, (block_width, block_height)
     )
 
     for i, row in enumerate(level):
